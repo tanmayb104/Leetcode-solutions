@@ -3,28 +3,21 @@
 #     def __init__(self, val=0, left=None, right=None):
 #         self.val = val
 #         self.left = left
-#         self.right = right
+#         self.right = right 
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if(not root):
             return False
-        
-        su=[]
-        st=[[root,1]]
+        st=[[root,targetSum]]
         while(st):
             a,d=st.pop()
-            su=su[:d-1]
-            su.append(a.val)
-            # print(su,st)
-            if(not a.left and not a.right):
-                if(sum(su[:d])==targetSum):
-                    return True
-                else:
-                    su.pop()
-            if(a.left):
-                st.append([a.left,d+1])
+            if(not a.right and not a.left and d-a.val==0):
+                return True
             if(a.right):
-                st.append([a.right,d+1])
+                st.append([a.right,d-a.val])
+            if(a.left):
+                st.append([a.left,d-a.val])
         return False
-            
+        
+        
         
