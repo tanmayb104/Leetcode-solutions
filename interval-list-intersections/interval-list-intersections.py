@@ -4,7 +4,7 @@ class Solution:
         j=0
         ans=[]
         while(i<len(f) and j<len(s)):
-            if ((s[j][0]<=f[i][0] and f[i][0]<=s[j][1]) or (s[j][0]<=f[i][1] and f[i][1]<=s[j][1]) or (s[j][0]>=f[i][0] and f[i][1]>=s[j][0])):
+            if ((f[i][0]<=s[j][1]) and (s[j][0]<=f[i][1])):
                 ans.append([max(s[j][0],f[i][0]),min(f[i][1],s[j][1])])
                 if(s[j][1]<f[i][1]):
                     j+=1
