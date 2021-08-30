@@ -10,10 +10,10 @@ class Solution:
             if target == nums[mid]:
                 return True
             temp=low
-            while(nums[low]==nums[mid] and low>=0):
-                low-=1
-            if low==-1:
-                low=temp+1
+            while(nums[low]==nums[mid] and low<mid):
+                low+=1
+            if low==mid:
+                low=mid+1
                 continue
             if nums[low] < nums[mid]:
                 if nums[low] <= target < nums[mid]:
