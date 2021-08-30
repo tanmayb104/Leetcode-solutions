@@ -7,18 +7,12 @@ class Solution:
             if(nums[mid]==target):
                 return mid
             elif(nums[mid]>target):
-                if(nums[low]<=nums[mid]):
-                    if(nums[low]<=target):
-                        high=mid-1
-                    else:
+                if(target<nums[low]<=nums[mid]):
                         low=mid+1
                 else:
                     high=mid-1
             else:
-                if(nums[mid]<nums[high]):
-                    if(target<=nums[high]):
-                        low=mid+1
-                    else:
+                if(nums[mid]<nums[high]<target):
                         high=mid-1
                 else:
                     low=mid+1
