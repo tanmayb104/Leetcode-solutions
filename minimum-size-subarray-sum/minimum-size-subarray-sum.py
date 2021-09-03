@@ -5,9 +5,8 @@ class Solution:
         s=0
         ans=999999999999999
         while(r<len(nums)):
-            while(s<target and r<len(nums)):
-                s+=nums[r]
-                r+=1
+            s+=nums[r]
+            r+=1
             while(s>=target):
                 ans=min(ans,r-l)
                 s-=nums[l]
