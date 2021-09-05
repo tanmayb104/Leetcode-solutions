@@ -3,7 +3,7 @@ class Solution:
         l=0
         r=0
         s=0
-        ans=999999999999999
+        ans=999999
         while(r<len(nums)):
             s+=nums[r]
             r+=1
@@ -11,6 +11,6 @@ class Solution:
                 ans=min(ans,r-l)
                 s-=nums[l]
                 l+=1
-        if(ans==999999999999999):
+        if(ans==999999):
             ans=0
         return ans
