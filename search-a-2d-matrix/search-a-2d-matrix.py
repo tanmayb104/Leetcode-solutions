@@ -16,7 +16,6 @@ class Solution:
         row=top
         if(row>=len(matrix) or row<0):
             return False
-        # print(row)
         while(left<=right):
             mid=(left+right)//2
             if(matrix[row][mid]==target):
