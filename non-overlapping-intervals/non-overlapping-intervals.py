@@ -1,9 +1,9 @@
 class Solution:
     def eraseOverlapIntervals(self, i: List[List[int]]) -> int:
-        i=sorted(i,key=lambda x:(x[0],x[1]))
-        print(i)
         if(len(i)==1):
             return 0
+        i=sorted(i,key=lambda x:(x[0],x[1]))
+        # print(i)
         c=0
         j=0
         k=1
