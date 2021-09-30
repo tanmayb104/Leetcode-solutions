@@ -14,10 +14,11 @@ class Solution:
         qu=deque()
         qu.append([root,0])
         while(qu):
-            a,de=qu.popleft()
+            a,de=qu.pop()
             if(a.left):
                 qu.append([a.left,de+1])
             if(a.right):
                 qu.append([a.right,de+1])
             if(not a.left and not a.right):
-                return de+1
+                ans=min(ans,de+1)
+        return ans
