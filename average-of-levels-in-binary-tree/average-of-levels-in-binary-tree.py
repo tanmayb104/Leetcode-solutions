@@ -8,24 +8,24 @@ from collections import deque
 class Solution:
     def averageOfLevels(self, root: Optional[TreeNode]) -> List[float]:
         ans=[]
-        d=0
         avg=0
         co=0
         qu=deque()
-        qu.append([root,0])
+        qu.append(root)
+        qu.append(-1)
         while(qu):
-            a,de=qu.popleft()
-            if(de==d):
+            a=qu.popleft()
+            if(a!=-1):
                 avg+=a.val
                 co+=1
+                if(a.left):
+                    qu.append(a.left)
+                if(a.right):
+                    qu.append(a.right)
             else:
                 ans.append(avg/co)
-                avg=a.val
-                co=1
-                d+=1
-            if(a.left):
-                qu.append([a.left,de+1])
-            if(a.right):
-                qu.append([a.right,de+1])
-        ans.append(avg/co)
+                avg=0
+                co=0
+                if(qu):
+                    qu.append(-1)
         return ans
