@@ -13,7 +13,7 @@ class Solution:
         a1=[p]
         a2=[q]
         while(len(a1) and len(a2)):
-            print(a1,a2)
+            # print(a1,a2)
             p1=a1.pop()
             q1=a2.pop()
             if(p1.val!=q1.val):
@@ -35,6 +35,6 @@ class Solution:
                     pass
                 else:
                     return False
-        print(a1,a2)
+        # print(a1,a2)
         return True
                 
