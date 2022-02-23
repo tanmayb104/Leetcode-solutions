@@ -9,17 +9,16 @@ class Solution:
         if(not root):
             return []
         def rec(root,l,t):
-            l.append(root.val)
+            ans[-1].append(root.val)
             # print(root.val,l,t,ans)
             if(not root.left and not root.right and t==root.val):
-                a=l.copy()
-                ans.append(a)
+                ans.append(ans[-1].copy())
             if(root.left):
                 rec(root.left,l,t-root.val)
             if(root.right):
                 rec(root.right,l,t-root.val)
-            l.pop()
-        ans=[]
+            ans[-1].pop()
+        ans=[[]]
         rec(root,[],targetSum)
-        return ans
+        return ans[:-1]
         
