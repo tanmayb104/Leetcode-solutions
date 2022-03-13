@@ -10,10 +10,7 @@ class Solution:
             return None
         slow = head
         fast = head
-        c=0
         while(True):
-            # print(slow.val,fast.val)
-            c+=1
             if(slow==slow.next):
                 return slow
             if(fast and fast.next):
@@ -23,7 +20,6 @@ class Solution:
                 return None
             if(fast==slow):
                 break
-        # print(c,"C val")
         while(head!=slow):
             slow=slow.next
             head=head.next
