@@ -1,37 +1,25 @@
 from collections import Counter
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
-        s=set(nums)
+        nums.sort()
         ans=[]
-        added=set()
-        c=Counter(nums)
-        if(0 in c):
-            if(c[0]>=3):
-                added.add((0,0,0))
-                ans.append([0,0,0])
-            c[0]=1
-        for i in c.keys():
-            if(c[i]>2):
-                c[i]=2
-        nums=[]
-        for i in c.keys():
-            nums+=[i]*c[i]
-        # print(nums)
-        for i in range(len(nums)-1):
-            for j in range(i+1,len(nums)):
-                if(-nums[i]-nums[j] in s):
-                    a=[nums[i],nums[j],-nums[i]-nums[j]]
-                    a.sort()
-                    c1=Counter(a)
-                    a=tuple(a)
-                    flag=True
-                    for k in c1.keys():
-                        if(c1[k]>c[k]):
-                            flag=False
-                    if(a not in added and flag):
-                        # print(c1)
-                        added.add(a)
-                        ans.append([nums[i],nums[j],-nums[i]-nums[j]])
+        se=set()
+        for i in range(len(nums)):
+            l=0
+            h=len(nums)-1
+            while(l<h):
+                if(nums[i]+nums[l]+nums[h]>0):
+                    h-=1
+                elif(nums[i]+nums[l]+nums[h]<0):
+                    l+=1
+                else:
+                    if(i!=l and l!=h and i!=h):
+                        a=[nums[i],nums[l],nums[h]]
+                        a.sort()
+                        b=tuple(a)
+                        if(b not in se):
+                            se.add(b)
+                            ans.append(a)
+                    l+=1
+                    h-=1
         return ans
-                    
-        
