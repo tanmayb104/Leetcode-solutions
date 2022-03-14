@@ -4,8 +4,10 @@ class Solution:
         nums.sort()
         ans=[]
         se=set()
-        for i in range(len(nums)):
-            l=0
+        for i in range(len(nums)-2):
+            if(nums[i]==nums[i+1] and nums[i]>0):
+                continue
+            l=i+1
             h=len(nums)-1
             while(l<h):
                 if(nums[i]+nums[l]+nums[h]>0):
