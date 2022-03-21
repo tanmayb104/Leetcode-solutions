@@ -3,7 +3,7 @@ class Solution:
         if(cl==n):
             ans.append(temp)
             return
-        elif(op==0 or op==cl):
+        elif(op==cl):
             self.rec(n, ans, temp+"(", op+1, cl)
         elif(op==n):
             self.rec(n, ans, temp+")", op, cl+1)
@@ -15,5 +15,5 @@ class Solution:
         
     def generateParenthesis(self, n: int) -> List[str]:
         ans=[]
-        self.rec(n, ans, "", 0, 0)
+        self.rec(n, ans, "(", 1, 0)
         return ans
