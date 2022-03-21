@@ -4,16 +4,16 @@ class Solution:
 		# code here
 		l=[]
 		s=""
-		def rec(n,l,s,one,zero):
+		def rec(n,s,one,zero):
 		    if(one+zero==n):
 		        l.append(s)
 		        return 
 		    if(one==zero):
-		        rec(n,l,s+"1",one+1,zero)
+		        rec(n,s+"1",one+1,zero)
 		    else:
-		        rec(n,l,s+"1",one+1,zero)
-		        rec(n,l,s+"0",one,zero+1)
-	    rec(n,l,s,0,0)
+		        rec(n,s+"1",one+1,zero)
+		        rec(n,s+"0",one,zero+1)
+	    rec(n,s,0,0)
 	    return l
 	    
 		
