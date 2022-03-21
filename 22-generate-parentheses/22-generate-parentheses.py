@@ -1,6 +1,6 @@
 class Solution:
     def rec(self, n, ans, temp, op, cl):
-        if(cl==n and op==n):
+        if(cl==n):
             ans.append(temp)
             return
         elif(op==0 or op==cl):
