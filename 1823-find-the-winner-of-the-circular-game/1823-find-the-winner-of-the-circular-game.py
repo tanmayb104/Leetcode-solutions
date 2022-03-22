@@ -7,5 +7,4 @@ class Solution:
             a%=len(l)
             l.pop(a)
             a-=1
-            # print(l)
         return l[0]
