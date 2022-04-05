@@ -3,9 +3,9 @@ class Solution:
         if(row==n):
             p=[]
             for i in range(n):
-                for j in range(n):
-                    if(board[i][j]=="0"):
-                        board[i][j]="."
+                # for j in range(n):
+                #     if(board[i][j]=="0"):
+                #         board[i][j]="."
                 p.append("".join(board[i]))
             self.ans.append(p)
         else:
