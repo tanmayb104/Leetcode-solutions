@@ -14,11 +14,12 @@ class Solution:
         def rec(root):
             nonlocal head
             if(root):
-                # print(root.val,head.val)
-                rec(root.left)
+                if(root.left):
+                    rec(root.left)
                 head.right=TreeNode(root.val)
                 head=head.right
-                rec(root.right)
+                if(root.right):
+                    rec(root.right)
             return
         rec(root)
         return ans.right
