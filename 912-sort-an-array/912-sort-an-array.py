@@ -1,11 +1,11 @@
 class Solution:
-    def mergesort(self,nums):
+    def sortArray(self, nums: List[int]) -> List[int]:
         if(len(nums)==1):
             return nums
         else:
             mid=len(nums)//2
-            l1=self.mergesort(nums[:mid])
-            l2=self.mergesort(nums[mid:])
+            l1=self.sortArray(nums[:mid])
+            l2=self.sortArray(nums[mid:])
             l=[]
             i=0
             j=0
@@ -23,7 +23,3 @@ class Solution:
                 l.append(l2[j])
                 j+=1
             return l
-                
-    def sortArray(self, nums: List[int]) -> List[int]:
-        return self.mergesort(nums)
-        
