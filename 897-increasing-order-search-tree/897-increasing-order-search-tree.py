@@ -5,23 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
+        
     def increasingBST(self, root: TreeNode) -> TreeNode:
         if(not root):
             return None
-        l=[]
-        st=[root]
-        while(st):
-            a=st.pop()
-            l.append(a.val)
-            if(a.left):
-                st.append(a.left)
-            if(a.right):
-                st.append(a.right)
-        l.sort()
-        head=TreeNode(l[0])
-        root=head
-        for i in range(1,len(l)):
-            root.right=TreeNode(l[i])
-            root=root.right
-        return head
-        
+        head=TreeNode()
+        ans=head
+        def rec(root):
+            nonlocal head
+            if(root):
+                # print(root.val,head.val)
+                rec(root.left)
+                head.right=TreeNode(root.val)
+                head=head.right
+                rec(root.right)
+            return
+        rec(root)
+        return ans.right
