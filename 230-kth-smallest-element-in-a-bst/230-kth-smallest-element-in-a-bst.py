@@ -7,7 +7,7 @@
 class Solution:
     def inorder(self,root):
         if(root):
-            print(self.k,root.val)
+            # print(self.k,root.val)
             self.inorder(root.left)
             self.k-=1
             if(self.k==0):
