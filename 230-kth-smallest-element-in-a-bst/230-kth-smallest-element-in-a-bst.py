@@ -7,11 +7,12 @@
 class Solution:
     def inorder(self,root):
         if(root):
-            # print(self.k,root.val)
+            print(self.k,root.val)
             self.inorder(root.left)
             self.k-=1
             if(self.k==0):
                 self.ans=root.val
+                return
             self.inorder(root.right)
             
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
