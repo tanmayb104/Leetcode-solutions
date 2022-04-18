@@ -4,19 +4,17 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution:
-    def inorder(self,root):
-        if(root):
-            # print(self.k,root.val)
-            self.inorder(root.left)
-            self.k-=1
-            if(self.k==0):
-                self.ans=root.val
-                return
-            self.inorder(root.right)
-            
+class Solution:            
     def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
-        self.ans=0
         self.k=k
-        self.inorder(root)
-        return self.ans
+        def inorder(root):
+            if(root):
+                inorder(root.left)
+                self.k-=1
+                if(self.k==0):
+                    raise Exception(root.val)
+                inorder(root.right)
+        try:
+            inorder(root)
+        except Exception as e:
+            return e
