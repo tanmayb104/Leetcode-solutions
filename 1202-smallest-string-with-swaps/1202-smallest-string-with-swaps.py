@@ -25,30 +25,18 @@ class Solution:
             union_set(i[0],i[1])
         
         n={}
-        m={}
+        for i in p.keys():
+            n[i]=[]
         for i in range(len(s)):
-            a=i
-            while(a!=p[a]):
-                a=p[a]
-            if(a in n):
-                n[a].append(s[i])
-                m[a].append(i)
-            else:
-                n[a]=[s[i]]
-                m[a]=[i]
+            a=find_set(i)
+            n[a].append(s[i])
         for i in n.keys():
-            n[i].sort()
-            m[i].sort()
-        l=[]
-        for i in n.keys():
-            for j in range(len(n[i])):
-                l.append([m[i][j],n[i][j]])
-        l.sort()
+            n[i].sort(reverse=True)
         ans=""
-        for i in l:
-            ans+=i[1]
+        for i in range(len(s)):
+            a=find_set(i)
+            ans+=n[a].pop()
         return ans
-            
                 
         
         
