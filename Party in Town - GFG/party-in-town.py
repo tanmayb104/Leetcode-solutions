@@ -6,19 +6,17 @@ class Solution:
         ans=99999999999
         for i in range(1,N+1):
             st=[[i,0]]
-            vis=[False for i in range(N+1)]
+            vis=set()
             temp=0
             while(st):
                 a,b=st.pop()
-                # print(a,b)
-                vis[a]=True
+                vis.add(a)
                 temp=max(temp,b)
                 for j in adj[a]:
-                    if(not vis[j]):
+                    if(j not in vis):
                         st.append([j,b+1])
-            # print(temp,ans)
             ans=min(ans,temp)
-        return(ans)
+        return ans
                     
 #{ 
 #  Driver Code Starts
