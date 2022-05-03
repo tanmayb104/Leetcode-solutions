@@ -3,14 +3,14 @@ class Solution:
         a=sorted(nums)
         n=len(nums)
         ans=n
-        for i in range(n):
-            if(a[i]==nums[i]):
-                ans-=1
-            else:
-                break
-        for i in range(n-1,-1,-1):
-            if(a[i]==nums[i]):
-                ans-=1
-            else:
-                break
+        l=0
+        r=n-1
+        while(l<n and a[l]==nums[l]):
+            l+=1
+            ans-=1
+        while(r>-1 and a[r]==nums[r]):
+            r-=1
+            ans-=1
         return max(ans,0)
+        
+                
