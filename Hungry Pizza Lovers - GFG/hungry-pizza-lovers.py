@@ -3,8 +3,8 @@
 class Solution:
     def permute(self,arr,n):
         #Complete the function
-        arr=[[i]+arr[i] for i in range(n)]
-        arr=sorted(arr,key=lambda x:x[1]+x[2])
+        arr=[[i,arr[i][0]+arr[i][1]] for i in range(n)]
+        arr=sorted(arr,key=lambda x:x[1])
         return [i[0]+1 for i in arr]
 
 #{ 
