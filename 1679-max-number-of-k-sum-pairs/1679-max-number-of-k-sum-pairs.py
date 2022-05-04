@@ -1,16 +1,13 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
-        nums.sort()
+        d={}
         ans=0
-        l=0
-        r=len(nums)-1
-        while(l<r):
-            if(nums[l]+nums[r]==k):
+        for i in nums:
+            if(k-i in d and d[k-i]>0):
+                d[k-i]-=1
                 ans+=1
-                l+=1
-                r-=1
-            elif(nums[l]+nums[r]>k):
-                r-=1
+            elif(i in d):
+                d[i]+=1
             else:
-                l+=1
+                d[i]=1
         return ans
