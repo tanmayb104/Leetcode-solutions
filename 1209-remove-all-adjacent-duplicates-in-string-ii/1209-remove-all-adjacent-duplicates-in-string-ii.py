@@ -1,23 +1,17 @@
 class Solution:
     def removeDuplicates(self, s: str, k: int) -> str:
-        st=[]
-        a=1
+        st=[["!$",0]]
         i=0
         while(i<len(s)):
-            if(len(st)):
-                a=st[-1][1]
-            if(len(st) and s[i]==st[-1][0]):
-                a+=1
-            else:
-                a=1
-            if(a==k):
-                for j in range(k-1):
+            # print(st)
+            if(st[-1][0]==s[i]):
+                st[-1][1]+=1
+                if(st[-1][1]==k):
                     st.pop()
-                i+=1
             else:
-                st.append([s[i],a])
-                i+=1
+                st.append([s[i],1])
+            i+=1
         ans=""
         for i in st:
-            ans+=i[0]
+            ans+=i[0]*i[1]
         return ans
