@@ -4,7 +4,7 @@ class Solution:
         a=1
         i=0
         while(i<len(s)):
-            if(len(st) and a==0):
+            if(len(st)):
                 a=st[-1][1]
             if(len(st) and s[i]==st[-1][0]):
                 a+=1
@@ -14,7 +14,6 @@ class Solution:
                 for j in range(k-1):
                     st.pop()
                 i+=1
-                a=0
             else:
                 st.append([s[i],a])
                 i+=1
