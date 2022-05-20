@@ -5,7 +5,7 @@ class Solution:
         n=len(ma)
         m=len(ma[0])
         
-        @lru_cache(maxsize=None)
+        @lru_cache(maxsize=50000)
         def rec(b,c):
             l=0
             for i in range(4):
