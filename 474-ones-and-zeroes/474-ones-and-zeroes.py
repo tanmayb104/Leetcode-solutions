@@ -3,11 +3,11 @@ class Solution:
         l=[]
         for i in strs:
             l.append([i.count("0"),i.count("1")])
-        # print(l)
+            
         @lru_cache(maxsize=None)
         def rec(m,n,i):
             if(m<0 or n<0):
-                return -1
+                return -9999999999999
             if(i==len(strs)):
                 return 0
             if(m==0 and n==0):
