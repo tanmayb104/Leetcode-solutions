@@ -1,18 +1,17 @@
 class Solution:
     def longestValidParentheses(self, s: str) -> int:
-        st=[["!",0]]
+        st=[0]
         ans=0
         for i in range(len(s)):
             if(s[i]=="("):
-                st.append([s[i],0])
+                st.append(0)
             else:
-                if(st[-1][0]=="("):
-                    a,b=st.pop()
-                    st[-1][1]+=2+b
+                if(len(st)>1):
+                    val=st.pop()
+                    st[-1]+=2+val
                 else:
-                    ans=max(ans,st[-1][1])
-                    st=[["!",0]]
+                    ans=max(ans,st[-1])
+                    st=[0]
         for i in range(len(st)):
-            ans=max(ans,st[i][1])
-        # print(ans)
+            ans=max(ans,st[i])
         return ans
