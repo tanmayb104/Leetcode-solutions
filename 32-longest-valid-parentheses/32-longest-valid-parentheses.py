@@ -12,6 +12,5 @@ class Solution:
                 else:
                     ans=max(ans,st[-1])
                     st=[0]
-        for i in range(len(st)):
-            ans=max(ans,st[i])
-        return ans
+        a=max(st)
+        return max(ans,a)
