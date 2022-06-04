@@ -1,54 +1,49 @@
 class Solution:
-    def solve(self,n,board,l,row):
-        if(row==n):
-            p=[]
-            for i in range(n):
-                p.append("".join(board[i]))
-            self.ans.append(p)
-        else:
-            for i in range(n):
-                if(board[row][i]=="0"):
-                    marked=[]
-                    for j in range(n):
-                        if(board[row][j]=="0"):
-                            board[row][j]="."
-                            marked.append([row,j])
-                        elif(board[row][j]=="Q"):
-                            return 
-                    for j in range(row+1,n):
-                        if(board[j][i]=="0"):
-                            board[j][i]="."
-                            marked.append([j,i])
-                    new_r=row+1
-                    new_c=i+1
-                    while(new_r<n and new_c<n):
-                        if(board[new_r][new_c]=="0"):
-                            board[new_r][new_c]="."
-                            marked.append([new_r,new_c])
-                        new_r+=1
-                        new_c+=1
-                    new_r=row+1
-                    new_c=i-1
-                    while(new_r<n and new_c>-1):
-                        if(board[new_r][new_c]=="0"):
-                            board[new_r][new_c]="."
-                            marked.append([new_r,new_c])
-                        new_r+=1
-                        new_c-=1
-                    board[row][i]="Q"
-                    l.append(marked)
-                    self.solve(n,board,l,row+1)
-                    board[row][i]="0"
-                    p=l.pop()
-                    for i in p:
-                        board[i[0]][i[1]]="0"
-                    
-                    
-                    
-        
     
     def solveNQueens(self, n: int) -> List[List[str]]:
-        board=[["0" for i in range(n)] for j in range(n)]
+        board=[["." for i in range(n)] for j in range(n)]
+        vis=[[0 for i in range(n)] for j in range(n)]
         self.ans=[]
-        self.solve(n,board,[],0)
+        
+        def rec(i,l):
+            # print(board)
+            # print(vis)
+            # print(i,l)
+            # print("****88",self.ans)
+            if(i==n):
+                p=[]
+                for i in range(n):
+                    o=""
+                    for j in board[i]:
+                        o+=j
+                    p.append(o)
+                self.ans.append(p)
+                return
+            else:
+                for j in range(n):
+                    if(vis[i][j]==0):
+                        board[i][j]="Q"
+                        attack=[]
+                        a=i+1
+                        b=j+1
+                        c=j-1
+                        while(a<n):
+                            if(b<n):
+                                attack.append([a,b])
+                                vis[a][b]+=1
+                                b+=1
+                            attack.append([a,j])
+                            vis[a][j]+=1
+                            if(c>-1):
+                                attack.append([a,c])
+                                vis[a][c]+=1
+                                c-=1
+                            a+=1
+                        l.append(attack)
+                        rec(i+1,l)
+                        at=l.pop()
+                        for k in at:
+                            vis[k[0]][k[1]]-=1
+                        board[i][j]="."
+        rec(0,[])
         return self.ans
