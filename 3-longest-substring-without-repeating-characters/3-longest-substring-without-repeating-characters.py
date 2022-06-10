@@ -6,14 +6,14 @@ class Solution:
         ans=0
         while(r<len(s)):
             if(s[r] not in d):
-                d[s[r]]=1
+                d[s[r]]=r
                 r+=1
                 ans=max(ans,r-l)
             else:
-                while(s[r]!=s[l]):
-                    del d[s[l]]
-                    l+=1
-                del d[s[l]]
-                l+=1
+                l=max(l,d[s[r]]+1)
+                d[s[r]]=r
+                r+=1
+                ans=max(ans,r-l)
+            # print(d,l,r)
         ans=max(ans,r-l)
         return ans
