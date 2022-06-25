@@ -1,13 +1,34 @@
+from heapq import *
 class Solution:
-    def isPossible(self, target: List[int]) -> bool:
-        heap = [-num for num in target]
-        total = sum(target)
-        heapify(heap)
-        while heap[0] != -1:
-            num = -heappop(heap)
-            total -= num
-            if num <= total or total < 1: return False
-            num %= total
-            total += num
-            heappush(heap, -num or -total)
+    def isPossible(self, t: List[int]) -> bool:
+        if(len(t)==1):
+            if(t[0]==1):
+                return True
+            else:
+                return False
+        s=sum(t)
+        for i in range(len(t)):
+            t[i]=-t[i]
+        heapify(t)
+        while(len(t)):
+            # print(t)
+            a=-heappop(t)
+            if(a==1):
+                continue
+            q=s-a
+            a-=1
+            r=a%q
+            v=a//q
+            # print(s,r)
+            if(q>=a+1):
+                return False
+            if(r==0):
+                s-=a-r
+                continue
+            elif(r>0):
+                s-=a-r
+                heappush(t,-r-1)
+            else:
+                return False
         return True
+            
