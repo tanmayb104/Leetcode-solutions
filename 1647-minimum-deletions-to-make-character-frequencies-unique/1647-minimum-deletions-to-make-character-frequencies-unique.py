@@ -1,15 +1,9 @@
 class Solution:
     def minDeletions(self, s: str) -> int:
         ans=0
-        d={}
-        for i in s:
-            if(i in d):
-                d[i]+=1
-            else:
-                d[i]=1
-        l=sorted(d.items(),key=lambda x:x[1], reverse=True)
+        l=sorted(Counter(s).values(),reverse=True)
         mi=999999999999999999
-        for k,v in l:
+        for v in l:
             if(v<mi):
                 mi=v
             elif(v==mi):
@@ -20,6 +14,4 @@ class Solution:
             else:
                 ans+=v-mi+1
                 mi-=1
-        if(mi<0):
-            return -1
         return ans
