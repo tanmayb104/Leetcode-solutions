@@ -1,6 +1,6 @@
 class Solution:
     def coinChange(self, c: List[int], a: int) -> int:
-        c.sort(reverse=True)
+        c.sort()
         d={}
         def rec(i,a):
             tu=tuple([i,a])
@@ -13,8 +13,7 @@ class Solution:
             if(c[i]<=a):
                 d[tu]=min(1+rec(i,a-c[i]),rec(i+1,a))
                 return d[tu]
-            d[tu]=rec(i+1,a)
-            return d[tu]
+            return 9999999999999999
         
         ans=rec(0,a)
         if(ans>=9999999999999999):
