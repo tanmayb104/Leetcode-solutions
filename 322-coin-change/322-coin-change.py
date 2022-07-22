@@ -1,18 +1,22 @@
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
-        dp=[-1 for i in range(amount+1)]
-        dp[0]=0
-        for i in range(len(coins)):
-            if(coins[i]<amount+1):
-                dp[coins[i]]=1
-        for i in range(amount+1):
-            if(dp[i]!=-1):
-                for j in range(len(coins)):
-                    a=i+coins[j]
-                    if(a<amount+1):
-                        if(dp[a]!=-1):
-                            dp[a]=min(dp[a],dp[i]+1)
-                        else:
-                            dp[a]=dp[i]+1
-        return dp[amount]
-                
+    def coinChange(self, c: List[int], a: int) -> int:
+        c.sort(reverse=True)
+        d={}
+        def rec(i,a):
+            tu=tuple([i,a])
+            if(a==0):
+                return 0
+            if(i==len(c)):
+                return 9999999999999999
+            if(tu in d):
+                return d[tu]
+            if(c[i]<=a):
+                d[tu]=min(1+rec(i,a-c[i]),rec(i+1,a))
+                return d[tu]
+            d[tu]=rec(i+1,a)
+            return d[tu]
+        
+        ans=rec(0,a)
+        if(ans>=9999999999999999):
+            return -1
+        return ans
