@@ -13,9 +13,7 @@ class Solution:
             if(l<=r):
                 mid=(l+r)//2
                 node=TreeNode(nums[mid])
-                le=rec(l,mid-1)
-                ri=rec(mid+1,r)
-                node.left=le
-                node.right=ri
+                node.left=rec(l,mid-1)
+                node.right=rec(mid+1,r)
                 return node
         return rec(l,r)
