@@ -1,6 +1,7 @@
 class Solution:
     def numsSameConsecDiff(self, n: int, k: int) -> List[int]:
         ans=[]
+        @lru_cache()
         def rec(n,k,i,s):
             if(i==n):
                 ans.append(s)
