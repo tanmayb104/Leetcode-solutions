@@ -1,13 +1,13 @@
 class Solution:
     def numRollsToTarget(self, n: int, k: int, t: int) -> int:
-        @lru_cache(maxsize=None)
+        @cache
         def rec(i,t):
             if(i==n and t==0):
                 return 1
-            elif(t<n-i):
-                return 0
-            elif((n-i)*k<t):
-                return 0
+            # elif(t<n-i):
+            #     return 0
+            # elif((n-i)*k<t):
+            #     return 0
             elif(i==n):
                 return 0
             elif(t<0):
