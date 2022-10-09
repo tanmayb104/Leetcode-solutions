@@ -6,18 +6,17 @@
 #         self.right = right
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-        l=[]
+        d={}
+        flag=False
         def inorder(root):
+            nonlocal flag
             if(root):
                 inorder(root.left)
-                l.append(root.val)
+                if(k-root.val in d):
+                    flag=True
+                else:
+                    d[root.val]=1
                 inorder(root.right)
         inorder(root)
-        d={}
-        for i in l:
-            if(k-i in d):
-                return True
-            else:
-                d[i]=1
-        return False
+        return flag
         
