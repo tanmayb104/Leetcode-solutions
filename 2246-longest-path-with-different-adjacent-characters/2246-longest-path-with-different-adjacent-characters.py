@@ -1,31 +1,23 @@
 class Solution:
-    def longestPath(self, par: List[int], s: str) -> int:
-        dit = {}
-        for i in range(len(par)):
-            if par[i] in dit:
-                dit[par[i]].append(i)
+    def longestPath(self, parent: List[int], s: str) -> int:
+        t={}
+        for i in range(1,len(parent)):
+            if parent[i] not in t:
+                t[parent[i]]=[i]
             else:
-                dit[par[i]] = [i]
-                
-        ans = 1        
-        def dfs(n):
-            nonlocal ans
-            if n not in dit:
-                return 1
+                t[parent[i]].append(i)
             
-            largest=0 
-            second_largest=0 
-            for u in dit[n]:
-                curr = dfs(u)
-                if s[u]!=s[n]:
-                    if curr>largest:
-                        second_largest = largest
-                        largest = curr
-                    elif curr>second_largest:
-                        second_largest = curr
-                        
-            ans = max(ans,largest+second_largest+1) 
-            return largest+1  
+        self.ans=1
+        def fun(i):
+            if i not in t:
+                return 1
+            res = 1
+            for j in t[i]:
+                length=fun(j)
+                if s[i] != s[j]:
+                    self.ans = max(self.ans,length+res)
+                    res = max(res,length+1)
+            return res
         
-        dfs(0)
-        return ans
+        fun(0)
+        return self.ans
