@@ -1,11 +1,14 @@
 class Solution:
-    def maxSatisfaction(self, satisfaction: List[int]) -> int:
-        satisfaction.sort(reverse=True)
-        n = len(satisfaction)
-        presum, res = 0, 0
-        for i in range(n):
-            presum += satisfaction[i]
-            if presum < 0:
+    def maxSatisfaction(self, s: List[int]) -> int:
+        s.sort(reverse=True)
+        # print(s)
+        ans=0
+        p=0
+        for i in s:
+            if(p+i>=0):
+                ans+=p+i
+                p+=i
+            else:
                 break
-            res += presum
-        return res
+            # print(i,p,ans)
+        return ans
