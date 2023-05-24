@@ -1,19 +1,19 @@
 class Solution:
-    def maxScore(self, nums1: List[int], nums2: List[int], k: int) -> int:
-        n=len(nums1)
-        l=[]
-        for i in range(n):
-            l.append([nums1[i],nums2[i]])
-        l=sorted(l,key=lambda x:(x[1],x[0]),reverse=True)
-        h=[]
-        heapify(h)
-        ans=0
-        tot=0
-        for i in range(n):
-            tot+=l[i][0]
-            heappush(h,l[i][0])
-            if(len(h)>k):
-                tot-=heappop(h)
-            if(len(h)==k):
-                ans=max(ans,tot*l[i][1])
-        return ans
+    def maxScore(self, nums1, nums2, k):
+        total = res = 0
+        heap = []
+        
+        pairs = zip(nums1, nums2)
+        
+        sorted_pairs = sorted(pairs, key=lambda x: -x[1])
+        
+        for pair in sorted_pairs:
+            num1, num2 = pair  
+            heappush(heap, num1)
+            total += num1
+            if len(heap) > k:
+                total -= heappop(heap)
+            if len(heap) == k:
+                res = max(res, total * num2)
+        
+        return res
